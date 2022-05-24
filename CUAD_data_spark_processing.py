@@ -1,4 +1,4 @@
-from google.colab import drive
+
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import explode
 
@@ -137,14 +137,13 @@ def balance_ins_ps(contract):
 
 
 # Load Json file as data frame
-drive.mount('/content/drive')
 
 spark = SparkSession \
     .builder \
     .appName("COMP5349 A2 Data Loading Example") \
     .getOrCreate()
 
-test_data = "/content/drive/MyDrive/a2_data/test.json"
+test_data = "/Assignment_2_data/test.json"
 test_init_df = spark.read.json(test_data)
 
 # check the schema of data frame
@@ -193,7 +192,7 @@ question_answering_model_rdd.count()
 
 # convert rdd to json file
 df = question_answering_model_rdd.toDF(["source", "question", "answer_start", "answer_end"])
-df.write.json("/content/drive/MyDrive/a2_data/output")
+df.write.json("/output")
 
 
 
