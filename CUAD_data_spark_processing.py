@@ -142,7 +142,7 @@ spark = SparkSession \
     .appName("COMP5349 A2 Data Loading Example") \
     .getOrCreate()
 
-test_data = "/Assignment_2_data/test.json"
+test_data = "test.json"
 test_init_df = spark.read.json(test_data)
 
 # check the schema of data frame
