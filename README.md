@@ -1,4 +1,8 @@
 # COMP5349
+Setting your EMR with one Master node and four core node
+and choose all the instance type as c4.xlarge
+
+After login your EMR system
 First install git on your EMR system:
 sudo yum install git
 
