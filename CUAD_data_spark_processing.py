@@ -1,12 +1,8 @@
-
+import argparse
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import explode
 
-parser = argparse.ArgumentParser()
-parser.add_argument("--output", help="the output path",
-                        default='a2_output')
-args = parser.parse_args()
-output_path = args.output
+
 
 def seq_contain_answer(seq_start_index, seq_end_index, answer_start, answer_end):
     if answer_end < seq_start_index or answer_start > seq_end_index:
@@ -146,6 +142,12 @@ spark = SparkSession \
     .builder \
     .appName("COMP5349 A2 Data Loading Example") \
     .getOrCreate()
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--output", help="the output path",
+                        default='a2_output')
+args = parser.parse_args()
+output_path = args.output
 
 test_data = "test.json"
 test_init_df = spark.read.json(test_data)
