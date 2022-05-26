@@ -2,6 +2,11 @@
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import explode
 
+parser = argparse.ArgumentParser()
+parser.add_argument("--output", help="the output path",
+                        default='a2_output')
+args = parser.parse_args()
+output_path = args.output
 
 def seq_contain_answer(seq_start_index, seq_end_index, answer_start, answer_end):
     if answer_end < seq_start_index or answer_start > seq_end_index:
@@ -198,7 +203,7 @@ question_answering_model_rdd = ins_preprocess_rdd.flatMap(balance_ins_ps)
 
 # convert rdd to json file
 df = question_answering_model_rdd.toDF(["source", "question", "answer_start", "answer_end"])
-df.write.json("/output")
+df.write.json(output_path)
 
 
 
