@@ -143,7 +143,6 @@ spark = SparkSession \
     .config("spark.sql.shuffle.partitions", 10) \
     .config("spark.executor.cores", "4") \
     .config("spark.executor.memory", "2G") \
-    .set("spark.dynamicAllocation.enabled", "false") \
     .getOrCreate()
 
 test_data = "test.json"
