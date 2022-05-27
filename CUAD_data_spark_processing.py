@@ -140,12 +140,12 @@ def balance_ins_ps(contract):
 spark = SparkSession \
     .builder \
     .appName("COMP5349 A2 Data Loading Example") \
-    .config("spark.sql.shuffle.partitions", 10) \
+    .config("spark.sql.shuffle.partitions", 5) \
     .config("spark.executor.cores", "4") \
-    .config("spark.executor.memory", "2G") \
+    .config("spark.executor.memory", "3G") \
     .getOrCreate()
 
-test_data = "test.json"
+test_data = "CUADv1.json"
 test_init_df = spark.read.json(test_data)
 
 # check the schema of data frame
