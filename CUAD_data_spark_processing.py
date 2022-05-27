@@ -141,6 +141,9 @@ spark = SparkSession \
     .builder \
     .appName("COMP5349 A2 Data Loading Example") \
     .config("spark.sql.shuffle.partitions", 10) \
+    .config("spark.executor.cores", "4") \
+    .config("spark.executor.memory", "2G") \
+    .set("spark.dynamicAllocation.enabled", "false") \
     .getOrCreate()
 
 test_data = "test.json"
