@@ -140,6 +140,7 @@ def balance_ins_ps(contract):
 spark = SparkSession \
     .builder \
     .appName("COMP5349 A2 Data Loading Example") \
+    .config("spark.sql.shuffle.partitions", 10) \
     .getOrCreate()
 
 test_data = "test.json"
@@ -147,16 +148,16 @@ test_init_df = spark.read.json(test_data)
 
 # check the schema of data frame
 print("check the schema of data frame")
-test_init_df.show(3)
-test_init_df.printSchema()
+#test_init_df.show(3)
+#test_init_df.printSchema()
 
 # modified data schema of data frame
 print("modified data schema of data frame")
 test_data_df = test_init_df.select((explode("data").alias('data')))
 test_title_ps_df = test_data_df.select("data.title", "data.paragraphs")
 test_paragraph_df = test_title_ps_df.select("title", explode("paragraphs")).toDF("title", "paragraph")
-test_paragraph_df.printSchema()
-test_paragraph_df.show(3)
+#test_paragraph_df.printSchema()
+#test_paragraph_df.show(3)
 
 # segment contract into samples
 
